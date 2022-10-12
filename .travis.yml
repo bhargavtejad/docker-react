@@ -1,20 +1,22 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
 bedfore_install:
-  - docker build -t bhargavd/docker-react .
+  - docker build -t bhargavd/docker-react -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true bhargavd/docker-react npm run test
 
 deploy:
   provider: elasticbeanstalk
-  region: ap-south-1
-  app: docker-react
-  env: "doccker-react-env"
-  bucket_name: "elasticbeanstalk-ap-south-1-196105644220"
-  bucket_path: "docker-react"
+  region: 'ap-south-1'
+  app: 'docker-react'
+  env: 'Dockerreact-env'
+  bucket_name: 'elasticbeanstalk-ap-south-1-196105644220'
+  bucket_path: 'docker-react'
   on:
     branch: master
   access_key_id: $aws_access_key
