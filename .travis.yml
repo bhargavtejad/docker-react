@@ -3,7 +3,7 @@ services:
   - docker
 
 bedfore_install:
-  - docker build -t bhargavd/docker-react -f Dockerfile.dev .
+  - docker build -t bhargavd/docker-react .
 
 script:
   - docker run -e CI=true bhargavd/docker-react npm run test
