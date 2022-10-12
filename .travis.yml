@@ -7,3 +7,15 @@ bedfore_install:
 
 script:
   - docker run -e CI=true bhargavd/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: docker-react
+  env: "docker-react-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-196105644220"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $aws_access_key
+  secret_access_key: $aws_secret_key
